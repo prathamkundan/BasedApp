@@ -1,0 +1,61 @@
+.user-tag{
+    display: flex;
+    align-items: center;
+    font-size: small;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(0, 166, 42);
+    color: white;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.date{
+    font-size: small;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.post-body{
+    white-space: pre-line;
+}
+
+.button-container {
+    display: flex;
+}
+
+.function-tag{
+    display: flex;
+    font-size: small;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(0, 89, 166);
+    color: white;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-right: 5px;
+    align-items: center;
+}
+
+.coral{
+    background-color: coral;
+}
+.yellow{
+    background-color: rgb(241, 230, 29);
+    color: black;
+}
+.grey{
+    background-color: rgb(128, 128, 128);
+    color: black;
+}
+.blue{
+    background-color: rgb(0, 89, 166);
+}
+.green{
+    background-color: rgb(0, 166, 42);
+}
