@@ -30,9 +30,6 @@ function Create() {
     const edit_message = "You can edit your post. You cannot edit your title. Why you ask? Reddit does it that way..."
 
     useEffect(() => {
-        if (location.state.toCreate && !isSuccess){
-            setPostData({title:'', body:''})
-        }
         if (!user) {
             dispatch(reset());
             navigate('/');
@@ -107,7 +104,7 @@ function Create() {
                                 className="form-control"
                                 name='body'
                                 required={true}
-                                rows="3"
+                                rows="8"
                                 placeholder='Post body'
                                 disabled={isSubmitted}
                             ></textarea>

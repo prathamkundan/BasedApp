@@ -11,7 +11,7 @@ const Header = () => {
     const navigate = useNavigate();
     const { user } = useSelector((state) => { return state.auth });
 
-    const onLogout = () => {
+    const onLogout = async () => {
         dispatch(logout());
         dispatch(reset());
         navigate('/')
@@ -51,7 +51,7 @@ const Header = () => {
                     </div>
                 </div>
             </nav>
-            {user ? (<Subhead></Subhead>) : ("")} 
+            {user && (<Subhead></Subhead>)}
         </>
     );
 }

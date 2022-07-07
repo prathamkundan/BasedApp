@@ -54,6 +54,12 @@ export const authSlice = createSlice({
             state.isLoading = false
             state.isSuccess = false
             state.message = ""
+        }, 
+        addLike: (state, action) =>{
+            state.user.liked_posts.push(action.payload);
+        },
+        removeLike: (state, action) =>{
+            state.user.liked_posts.filter(i=> i !==action.payload);
         }
     },
     extraReducers: (builder) => {
@@ -102,5 +108,5 @@ export const authSlice = createSlice({
     }
 })
 
-export const { reset } = authSlice.actions;
+export const { reset, addLike, removeLike } = authSlice.actions;
 export default authSlice.reducer

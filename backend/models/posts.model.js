@@ -13,6 +13,10 @@ const postSchema = mongoose.Schema({
     body: {
         type: String,
         required: [true, "Please add body."]
+    },
+    likes: {
+        type: Number,
+        default: 0
     }
 },{
     timestamps: true

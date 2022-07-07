@@ -44,7 +44,8 @@ const registerUser = asyncHandler(async (req, res) => {
             id: user.id,
             username: user.username,
             email: user.email,
-            token: generateToken(user._id)
+            token: generateToken(user._id),
+            liked_posts: user.liked_posts
         })
     }
     else {
@@ -67,7 +68,8 @@ const authenticateUser = asyncHandler(async (req, res) => {
             id: user.id,
             username: user.username,
             email: user.email,
-            token: generateToken(user._id)
+            token: generateToken(user._id),
+            liked_posts: user.liked_posts
         })
     }
     else {
@@ -81,7 +83,8 @@ const getMe = asyncHandler(async (req, res) => {
         id: req.user.id,
         name: req.user.username,
         email: req.user.email,
-        token: generateToken(user._id)
+        token: generateToken(user._id),
+        liked_posts: req.user.liked_posts
     });
 })
 

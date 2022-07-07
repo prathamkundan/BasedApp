@@ -12,6 +12,16 @@ const getPostsByUser = async(username)=>{
     return response.data;
 }
 
+const getLiked = async (token)=>{
+    const config = {
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    }
+    const response = await axios.get(API_ROOT+'liked', config);
+    return response.data;
+}
+
 const createPost = async(postData, token) => {
     const config = {
         headers : {
@@ -38,10 +48,11 @@ const deletePost = async (id, token) => {
             Authorization : `Bearer ${token}`
         }
     }
+    console.log(config)
     const response = await axios.delete(API_ROOT+id, config);
     return response.data;
 }
 
-const postHelper = { createPost, getPosts, getPostsByUser, deletePost, updatePost };
+const postHelper = { createPost, getPosts, getPostsByUser, getLiked, deletePost, updatePost };
 
 export default postHelper;

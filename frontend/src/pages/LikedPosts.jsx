@@ -2,24 +2,23 @@ import PostContainer from '../components/PostContainer';
 import Sidebar from '../components/Sidebar';
 import logo from '../static/based-logos/based-logos.jpeg';
 import { useSelector, useDispatch } from 'react-redux';
-import { reset, getPosts, getPostsByUser } from '../features/posts/postSlice';
+import { reset, getLikedPosts } from '../features/posts/postSlice';
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Postspage() {
+function LikedPosts() {
     const { posts, isError } = useSelector((state) => state.posts);
     const { user } = useSelector((state) => state.auth);
 
-    const { username } = useParams();
-
     const front_message = `This is a (bit too) simplistic blog application made using the MERN stack. This is the creator's first full-stack project.\nNo, it does not have dark mode.\nYes, that's bad.`
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (username) dispatch(getPostsByUser(username));
-        else dispatch(getPosts());
+        if (!user) navigate('/');
+        dispatch(getLikedPosts());
         return () => { dispatch(reset()); }
-    }, [dispatch, username])
+    }, [dispatch, navigate, user])
 
     return (
         <div className="row p-3">
@@ -27,15 +26,12 @@ function Postspage() {
             <div className="col-lg-8">
                 {isError ?
                     (
-                        <h2 className='my-5'>User does not exist</h2>
+                        <h2 className='my-5'>Something went wrong</h2>
                     ) :
                     (<>
 
                         <div className="col-lg-8">
-                            {username ?
-                                (<h2 className='my-3'>Posts by {username}</h2>) :
-                                (<h2 className='my-3'>All Posts</h2>)
-                            }
+                            <h2 className='my-3'>Posts liked by you</h2>
                         </div>
 
                         {/* If user has no posts */}
@@ -53,4 +49,4 @@ function Postspage() {
     )
 }
 
-export default Postspage
+export default LikedPosts

@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import Header from './components/Header';
 import Create from './pages/Create';
 import Postspage from './pages/Postspage';
+import LikedPosts from './pages/LikedPosts';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path='/' element={<Postspage />} />
+            <Route path='/liked' element={<LikedPosts/>} />
             <Route path='/users/:username' element={<Postspage/>} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />

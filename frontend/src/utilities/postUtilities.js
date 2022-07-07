@@ -1,3 +1,7 @@
+import axios from "axios";
+
+const API_ROOT = '/api/posts/'
+
 const hashUname = (name) => {
     var c = name.charCodeAt() % 5;
     switch (c) {
@@ -27,5 +31,32 @@ const dateify = (date) => {
     else return dt.getDate() + ' ' + monthNames[dt.getMonth()] + ' ' + dt.getFullYear();
 }
 
-const postUtilities = {dateify, hashUname};
+const likePost = async (id, token) =>{
+    const config = {
+        headers:{
+            Authorization : `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.put(API_ROOT+'like/'+id, null, config);
+    const user = JSON.parse(localStorage.getItem('user'));
+    user.liked_posts.push(id);
+    localStorage.setItem('user', JSON.stringify(user));
+    return response.data;
+}
+
+const unlikePost = async (id, token) =>{
+    const config = {
+        headers:{
+            Authorization : `Bearer ${token}`
+        }
+    }
+    const response = await axios.put(API_ROOT+`unlike/${id}`, null,config);
+    const user = JSON.parse(localStorage.getItem('user'));
+    user.liked_posts = user.liked_posts.filter(i=>i!==id);
+    localStorage.setItem('user', JSON.stringify(user));
+    return response.data;
+}
+
+const postUtilities = {dateify, hashUname, likePost, unlikePost};
 export default postUtilities;

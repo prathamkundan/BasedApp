@@ -12,7 +12,11 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: [true, "Please provide a password"]
-    }
+    },
+    liked_posts:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    }]
 }, {
     timestamps: true
 }, {

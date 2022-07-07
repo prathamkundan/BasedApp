@@ -1,3 +1,16 @@
+.like-button {
+    cursor: pointer;    
+}
+
+.date{
+    font-size: small;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.post-body{
+    white-space: pre-line;
+}
+
 .user-tag{
     display: flex;
     align-items: center;
@@ -12,19 +25,6 @@
     padding-bottom: 3px;
     margin-right: 5px;
     vertical-align: middle;
-}
-
-.date{
-    font-size: small;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-.post-body{
-    white-space: pre-line;
-}
-
-.button-container {
-    display: flex;
 }
 
 .function-tag{
@@ -42,6 +42,10 @@
     align-items: center;
 }
 
+.red{
+    background-color: rgb(255, 103, 103);
+    color: black;
+}
 .coral{
     background-color: coral;
 }

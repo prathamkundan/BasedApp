@@ -34,6 +34,19 @@ export const getPostsByUser = createAsyncThunk(
     }
 )
 
+export const getLikedPosts = createAsyncThunk(
+    'posts/liked',
+    async (_, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token;
+            return await postHelper.getLiked(token);
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+)
+
 export const createPost = createAsyncThunk(
     'posts/create',
     async (postData, thunkAPI) => {
@@ -80,7 +93,7 @@ export const postSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {
-        reset: (state) => initialState
+        reset: (state) => initialState,
     },
     extraReducers: (builder) => {
         builder
@@ -98,7 +111,7 @@ export const postSlice = createSlice({
                 state.isLoading = false;
                 state.posts = action.payload;
             })
-            
+
             .addCase(getPostsByUser.pending, (state) => {
                 state.isLoading = true;
             })
@@ -113,7 +126,22 @@ export const postSlice = createSlice({
                 state.isLoading = false;
                 state.posts = action.payload;
             })
-            
+
+            .addCase(getLikedPosts.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getLikedPosts.rejected, (state, action) => {
+                state.isError = true;
+                state.isSuccess = false;
+                state.isLoading = false;
+                state.message = action.payload;
+            })
+            .addCase(getLikedPosts.fulfilled, (state, action) => {
+                state.isSuccess = true;
+                state.isLoading = false;
+                state.posts = action.payload;
+            })
+
             .addCase(createPost.pending, (state) => {
                 state.isLoading = true;
             })
@@ -127,7 +155,7 @@ export const postSlice = createSlice({
                 state.isLoading = false;
                 state.posts = action.payload;
             })
-            
+
             .addCase(updatePost.pending, (state) => {
                 state.isLoading = true;
             })
