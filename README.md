@@ -6,6 +6,3 @@ MERN Blog application
 * CRUD Posts on the app
 * See posts by different users
 * Like posts by other users and see your liked posts
-
-Try it:
-https://mern-blog-based.herokuapp.com
